@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Сырный погребок Марины — домашние сыры в Санкт-Петербурге</title>
+<meta name="description" content="Домашние сыры ручной работы из фермерского молока. Сыр к столу и съедобные сырные подарки — торты, конфеты и наборы. Санкт-Петербург." />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Сырный погребок Марины" />
+<meta property="og:description" content="Домашние сыры ручной работы и сырные подарки. Санкт-Петербург." />
+<meta property="og:url" content="https://maryacreate.ru/" />
+
+<!-- ЗАГЛУШКА: тексты, цены, отзывы и реквизиты — предварительные, заменить после наполнения (Этап 0 плана). -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root {
+    --cream: #F5F2E8;
+    --cream-2: #EEE9DA;
+    --paper: #FFFFFF;
+    --ink: #262019;
+    --muted: #6C6455;
+    --line: #E3DCCB;
+    --green: #2F5241;
+    --green-d: #223E30;
+    --green-tint: #E7EEE7;
+    --gold: #B0842F;
+    --gold-lt: #E7C98A;
+    --shadow: 0 1px 2px rgba(38,32,25,.05), 0 10px 30px rgba(38,32,25,.06);
+    --radius: 18px;
+    --maxw: 1140px;
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } * { transition: none !important; animation: none !important; } }
+
+  body {
+    margin: 0;
+    background: var(--cream);
+    color: var(--ink);
+    font-family: "Golos Text", "Segoe UI", Roboto, system-ui, sans-serif;
+    font-size: 1.02rem;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+  }
+  img { max-width: 100%; display: block; }
+  a { color: var(--green); text-underline-offset: 3px; }
+  h1, h2, h3, h4 { font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif; letter-spacing: -.01em; line-height: 1.05; margin: 0; text-wrap: balance; }
+
+  .container { width: min(var(--maxw), calc(100% - 40px)); margin-inline: auto; }
+  section { padding: clamp(56px, 8vw, 104px) 0; }
+  .band { background: var(--cream-2); }
+
+  .eyebrow {
+    display: inline-block;
+    font-size: .76rem;
+    font-weight: 600;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 18px;
+  }
+  h2 { font-size: clamp(2.1rem, 4vw, 3.1rem); font-weight: 600; }
+  .section-lead { max-width: 62ch; color: var(--muted); margin-top: 14px; font-size: 1.05rem; }
+
+  .btn {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-height: 54px; padding: 0 26px;
+    border-radius: 999px; font-weight: 600; font-size: 1rem;
+    border: 1px solid transparent; cursor: pointer;
+    transition: transform .18s ease, background-color .18s ease, box-shadow .18s ease;
+  }
+  .btn:hover { transform: translateY(-1px); }
+  .btn-primary { background: var(--green); color: #fff; box-shadow: 0 12px 26px rgba(47,82,65,.22); }
+  .btn-primary:hover { background: var(--green-d); }
+  .btn-ghost { background: transparent; border-color: var(--line); color: var(--ink); }
+  .btn-ghost:hover { border-color: var(--green); color: var(--green); }
+  .btn-gold { background: var(--gold-lt); color: #3a2c14; }
+  .btn-gold:hover { background: #f0d69f; }
+
+  /* ---------- header ---------- */
+  .skip-link { position: fixed; left: 16px; top: -60px; z-index: 30; background: var(--green); color: #fff; padding: 10px 16px; border-radius: 10px; font-weight: 600; }
+  .skip-link:focus { top: 16px; }
+
+  .topbar { position: sticky; top: 0; z-index: 20; background: rgba(245,242,232,.86); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .topbar-inner { display: flex; align-items: center; justify-content: space-between; min-height: 72px; }
+  .brand { font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: 1.5rem; letter-spacing: -.01em; color: var(--ink); }
+  .brand span { color: var(--gold); }
+  .nav { display: flex; align-items: center; gap: 26px; }
+  .nav a { color: var(--muted); font-size: .96rem; font-weight: 500; }
+  .nav a:hover { color: var(--green); }
+  .nav .btn { min-height: 42px; padding: 0 18px; font-size: .92rem; }
+  .menu-btn { display: none; width: 46px; height: 46px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); cursor: pointer; }
+  .menu-btn span, .menu-btn::before, .menu-btn::after { content: ""; display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; margin: 4px auto; }
+
+  /* ---------- hero ---------- */
+  .hero { position: relative; overflow: hidden; }
+  .hero::before {
+    content: ""; position: absolute; inset: 0; z-index: 0;
+    background:
+      linear-gradient(96deg, var(--cream) 12%, rgba(245,242,232,.82) 46%, rgba(245,242,232,.30) 100%),
+      url('images/IMG_20260826_232634.jpg') center/cover no-repeat;
+  }
+  .hero .container { position: relative; z-index: 1; }
+  .hero-inner { max-width: 640px; padding: clamp(56px, 9vw, 116px) 0; }
+  .hero h1 { font-size: clamp(2.9rem, 7vw, 5.2rem); font-weight: 700; }
+  .hero p.lead { font-size: clamp(1.1rem, 2.2vw, 1.5rem); color: #3f382d; margin: 20px 0 0; line-height: 1.35; }
+  .hero .place { margin-top: 14px; font-weight: 600; color: var(--green); font-size: .98rem; }
+  .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+
+  /* ---------- catalog ---------- */
+  .filters { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 30px; }
+  .chip {
+    border: 1px solid var(--line); background: var(--paper); color: var(--muted);
+    padding: 9px 16px; border-radius: 999px; font-size: .9rem; font-weight: 500; cursor: pointer;
+    transition: border-color .15s, color .15s, background-color .15s;
+  }
+  .chip[aria-pressed="true"] { background: var(--green); border-color: var(--green); color: #fff; }
+  .chip:hover:not([aria-pressed="true"]) { border-color: var(--green); color: var(--green); }
+
+  .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+  .cat-card {
+    background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 24px 22px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 10px;
+  }
+  .cat-card .tag { font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
+  .cat-card h3 { font-size: 1.7rem; font-weight: 600; }
+  .cat-card .desc { color: var(--muted); font-size: .97rem; margin: 0; }
+  .cat-card dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 6px 0 0; font-size: .9rem; }
+  .cat-card dt { color: var(--muted); }
+  .cat-card dd { margin: 0; }
+  .cat-card .price { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); font-size: 1.25rem; font-weight: 700; font-family: "Cormorant Garamond", serif; font-variant-numeric: tabular-nums; }
+  .cat-card .price small { font-family: "Golos Text", sans-serif; font-weight: 500; font-size: .8rem; color: var(--muted); }
+  .cat-card .card-order { margin-top: 12px; font-weight: 600; font-size: .92rem; align-self: flex-start; }
+  .disclaimer { margin-top: 22px; font-size: .88rem; color: var(--muted); font-style: italic; }
+
+  /* ---------- gift (bold moment) ---------- */
+  .gift { background: var(--green-d); color: #F1EDE1; }
+  .gift .eyebrow { color: var(--gold-lt); }
+  .gift h2 { color: #fff; }
+  .gift .section-lead { color: rgba(241,237,225,.82); }
+  .gift-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+  .gift-card {
+    background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.14);
+    border-radius: var(--radius); padding: 26px 22px; display: flex; flex-direction: column; gap: 10px;
+  }
+  .gift-card h3 { font-size: 1.55rem; font-weight: 600; color: #fff; }
+  .gift-card p { margin: 0; color: rgba(241,237,225,.78); font-size: .96rem; }
+  .gift-card .meta { font-size: .86rem; color: rgba(241,237,225,.62); }
+  .gift-card .from { margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.14); font-family: "Cormorant Garamond", serif; font-size: 1.25rem; font-weight: 700; color: var(--gold-lt); }
+
+  .gift-value { margin-top: 44px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: start; }
+  .gift-value h3 { font-size: 1.9rem; font-weight: 600; color: #fff; margin-bottom: 8px; }
+  .gift-value ul { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 12px; }
+  .gift-value li { position: relative; padding-left: 30px; color: rgba(241,237,225,.9); font-size: .98rem; }
+  .gift-value li::before { content: "✦"; position: absolute; left: 0; top: 0; color: var(--gold-lt); }
+  .gift-note { margin-top: 22px; font-size: .9rem; color: rgba(241,237,225,.62); }
+  .gift-value .btn { margin-top: 26px; }
+
+  /* ---------- process ---------- */
+  .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 34px; }
+  .step { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
+  .step b { color: var(--gold); font-family: "Cormorant Garamond", serif; font-size: 1.2rem; }
+  .step p { margin: 8px 0 0; color: var(--muted); font-size: .96rem; }
+  .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 24px; }
+  .gallery figure { margin: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--cream-2); aspect-ratio: 1 / 1; }
+  .gallery img { width: 100%; height: 100%; object-fit: cover; transition: transform .4s ease; }
+  .gallery figure:hover img { transform: scale(1.05); }
+  .gallery figure:first-child { grid-column: span 2; grid-row: span 2; aspect-ratio: auto; }
+
+  /* ---------- farm ---------- */
+  .farm-card { margin-top: 32px; background: var(--paper); border: 1px solid var(--line); border-left: 4px solid var(--gold); border-radius: var(--radius); padding: 28px 26px; box-shadow: var(--shadow); }
+  .farm-card h3 { font-size: 1.6rem; font-weight: 600; margin-bottom: 10px; }
+  .farm-card p { color: var(--muted); margin: 0 0 12px; }
+  .farm-card .btn { margin-top: 4px; }
+
+  /* ---------- about ---------- */
+  .about-wrap { display: grid; grid-template-columns: .82fr 1.18fr; gap: 44px; align-items: center; }
+  .about-photo { border-radius: var(--radius); overflow: hidden; border: 1px solid var(--line); background: var(--cream-2); aspect-ratio: 4 / 5; }
+  .about-photo img { width: 100%; height: 100%; object-fit: cover; }
+  .about-body p { color: var(--muted); }
+  .about-body .sign { margin-top: 18px; font-family: "Cormorant Garamond", serif; font-size: 1.5rem; color: var(--green); }
+  @media (max-width: 940px) { .about-wrap { grid-template-columns: 1fr; } .about-photo { max-width: 380px; } }
+
+  /* ---------- benefits ---------- */
+  .benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 34px; }
+  .benefit { background: var(--green-tint); border: 1px solid #d7e2d7; border-radius: var(--radius); padding: 28px 24px; }
+  .benefit .ic { font-size: 1.9rem; }
+  .benefit h3 { font-size: 1.5rem; font-weight: 600; margin: 12px 0 6px; }
+  .benefit p { margin: 0; color: #4f5647; font-size: .96rem; }
+
+  /* ---------- reviews ---------- */
+  .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 34px; }
+  .review { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px 24px; box-shadow: var(--shadow); }
+  .review p { margin: 0; font-family: "Cormorant Garamond", serif; font-size: 1.32rem; line-height: 1.3; }
+  .review footer { margin-top: 16px; color: var(--muted); font-size: .9rem; font-family: "Golos Text", sans-serif; }
+
+  /* ---------- delivery ---------- */
+  .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 30px; }
+  .info-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; box-shadow: var(--shadow); }
+  .info-card h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 10px; }
+  .info-card ul { margin: 0; padding-left: 20px; color: var(--muted); }
+  .info-card li { margin: 6px 0; }
+
+  /* ---------- faq ---------- */
+  .faq { max-width: 760px; margin-top: 30px; }
+  .faq details { border-bottom: 1px solid var(--line); padding: 6px 0; }
+  .faq summary { cursor: pointer; list-style: none; padding: 16px 40px 16px 0; position: relative; font-weight: 600; font-size: 1.05rem; }
+  .faq summary::-webkit-details-marker { display: none; }
+  .faq summary::after { content: "+"; position: absolute; right: 6px; top: 50%; transform: translateY(-50%); font-size: 1.5rem; color: var(--gold); font-family: "Cormorant Garamond", serif; }
+  .faq details[open] summary::after { content: "–"; }
+  .faq p { margin: 0 0 16px; color: var(--muted); }
+
+  /* ---------- order form ---------- */
+  .order-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; margin-top: 30px; align-items: start; }
+  form.order { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow); }
+  form.order label { display: block; font-size: .88rem; font-weight: 600; margin: 14px 0 6px; }
+  form.order input, form.order select, form.order textarea {
+    width: 100%; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px;
+    font: inherit; background: var(--cream); color: var(--ink);
+  }
+  form.order input:focus, form.order select:focus, form.order textarea:focus { outline: 2px solid var(--green); outline-offset: 1px; border-color: transparent; }
+  form.order textarea { min-height: 96px; resize: vertical; }
+  form.order .btn { margin-top: 22px; width: 100%; }
+  .form-done { background: var(--green-tint); border: 1px solid #d7e2d7; border-radius: var(--radius); padding: 30px; }
+  .contacts-list { display: grid; gap: 14px; margin-top: 8px; }
+  .contacts-list a, .contacts-list span { display: flex; gap: 10px; align-items: baseline; color: var(--ink); font-weight: 500; }
+  .contacts-list .lbl { color: var(--muted); font-size: .85rem; min-width: 86px; font-weight: 500; }
+
+  /* ---------- footer ---------- */
+  footer.site { background: var(--green-d); color: rgba(241,237,225,.72); padding: 40px 0; font-size: .9rem; }
+  footer.site .container { display: flex; flex-wrap: wrap; gap: 16px; justify-content: space-between; align-items: center; }
+  footer.site a { color: var(--gold-lt); }
+
+  a:focus-visible, button:focus-visible, summary:focus-visible { outline: 2px solid var(--green); outline-offset: 3px; border-radius: 4px; }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 940px) {
+    .cat-grid, .gift-grid, .steps, .benefits, .reviews { grid-template-columns: repeat(2, 1fr); }
+    .gift-value, .info-grid, .order-wrap { grid-template-columns: 1fr; }
+    .gallery { grid-template-columns: repeat(3, 1fr); }
+    .gallery figure:first-child { grid-column: span 2; grid-row: span 2; }
+  }
+  @media (max-width: 720px) {
+    .nav {
+      display: none; position: absolute; right: 20px; top: 64px; flex-direction: column;
+      align-items: stretch; gap: 4px; min-width: 220px; padding: 12px;
+      background: var(--paper); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow);
+    }
+    .nav.is-open { display: flex; }
+    .nav a { padding: 10px 12px; }
+    .nav .btn { margin-top: 6px; }
+    .menu-btn { display: block; }
+    .cat-grid, .gift-grid, .steps, .benefits, .reviews { grid-template-columns: 1fr; }
+    .gallery { grid-template-columns: repeat(2, 1fr); }
+    .gallery figure:first-child { grid-column: span 2; grid-row: auto; }
+    .cta-row .btn { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<a class="skip-link" href="#catalog">Перейти к ассортименту</a>
+
+<header class="topbar">
+  <div class="container topbar-inner">
+    <div class="brand">Сырный погребок <span>Марины</span></div>
+    <nav class="nav" id="site-nav" aria-label="Главное меню">
+      <a href="#about">Обо мне</a>
+      <a href="#catalog">Ассортимент</a>
+      <a href="#gift">Сыр в подарок</a>
+      <a href="#process">Как я варю</a>
+      <a href="#reviews">Отзывы</a>
+      <a class="btn btn-primary" href="#order">Заказать</a>
+    </nav>
+    <button class="menu-btn" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="site-nav"><span></span></button>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-inner">
+        <span class="eyebrow">Домашняя сыроварня · Санкт-Петербург</span>
+        <h1>Сыр, сваренный дома с заботой</h1>
+        <p class="lead">Натуральные сыры из фермерского молока — к семейному столу, для здоровья и в подарок. Небольшие партии, ручная работа, честный состав.</p>
+        <p class="place">Санкт-Петербург · Калининский район · доставка по городу</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="#catalog">Смотреть ассортимент</a>
+          <a class="btn btn-ghost" href="#gift">Сыр в подарок</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="band">
+    <div class="container about-wrap">
+      <div class="about-photo">
+        <img src="images/marina-about.jpg" alt="Марина держит головку сыра в сыроварне" loading="lazy" />
+      </div>
+      <div class="about-body">
+        <span class="eyebrow">Обо мне</span>
+        <h2>Я — Марина, и я варю сыр дома</h2>
+        <p>Полтора года назад я начала варить сыр для своей семьи — хотелось точно знать, что мы едим. Сейчас этот сыр заказывают и другие семьи Санкт-Петербурга.</p>
+        <p>По профессии я повар-пекарь, есть действующая медицинская книжка. Работаю небольшими партиями: фермерское молоко из Гатчины жирностью 4,4–4,5 %, натуральные закваски, обязательная пастеризация, без консервантов и заменителей молочного жира.</p>
+        <p class="sign">С заботой, Марина</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATALOG -->
+  <section id="catalog">
+    <div class="container">
+      <span class="eyebrow">Ассортимент</span>
+      <h2>Сыры к вашему столу</h2>
+      <p class="section-lead">Молодые сыры готовлю за 1–2 дня, выдержанные — под заказ. Напишите, что приготовлено сегодня, или закажите любимую позицию заранее.</p>
+
+      <div class="filters" role="group" aria-label="Фильтр по типу сыра">
+        <button class="chip" aria-pressed="true" data-filter="all">Все</button>
+        <button class="chip" aria-pressed="false" data-filter="young">Молодые</button>
+        <button class="chip" aria-pressed="false" data-filter="aged">Выдержанные</button>
+        <button class="chip" aria-pressed="false" data-filter="lactose-free">Безлактозные</button>
+        <button class="chip" aria-pressed="false" data-filter="fry">Для жарки</button>
+      </div>
+
+      <div class="cat-grid">
+        <!-- ЗАГЛУШКА: цены, вес и сроки — предварительные -->
+        <article class="cat-card" data-cat="young fry">
+          <span class="tag">Молодой</span>
+          <h3>Адыгейский</h3>
+          <p class="desc">Нежный свежий сыр с мягким молочным вкусом.</p>
+          <dl>
+            <dt>Подача</dt><dd>к завтраку, жарить, в салат</dd>
+            <dt>Хранение</dt><dd>5 дней в холодильнике</dd>
+            <dt>Готовлю</dt><dd>1–2 дня</dd>
+          </dl>
+          <div class="price">350 ₽ <small>/ 300 г</small></div>
+        </article>
+
+        <article class="cat-card" data-cat="young">
+          <span class="tag">Молодой</span>
+          <h3>Брынза</h3>
+          <p class="desc">Выразительная солёность и плотная, аппетитная текстура.</p>
+          <dl>
+            <dt>Подача</dt><dd>в салат, с овощами, к вину</dd>
+            <dt>Хранение</dt><dd>до 14 дней в рассоле</dd>
+            <dt>Готовлю</dt><dd>3–4 дня</dd>
+          </dl>
+          <div class="price">420 ₽ <small>/ 300 г</small></div>
+        </article>
+
+        <article class="cat-card" data-cat="young">
+          <span class="tag">Молодой</span>
+          <h3>Фета</h3>
+          <p class="desc">Кремовая, насыщенная, идеальна для греческого салата.</p>
+          <dl>
+            <dt>Подача</dt><dd>салаты, с оливками и томатами</dd>
+            <dt>Хранение</dt><dd>до 14 дней в рассоле</dd>
+            <dt>Готовлю</dt><dd>4–5 дней</dd>
+          </dl>
+          <div class="price">450 ₽ <small>/ 250 г</small></div>
+        </article>
+
+        <article class="cat-card" data-cat="aged">
+          <span class="tag">Выдержанный</span>
+          <h3>Качотта классическая</h3>
+          <p class="desc">Мягкий полутвёрдый сыр с деликатным вкусом и красивой корочкой.</p>
+          <dl>
+            <dt>Подача</dt><dd>на сырную тарелку, к завтраку</dd>
+            <dt>Хранение</dt><dd>до 21 дня</dd>
+            <dt>Готовлю</dt><dd>10–14 дней</dd>
+          </dl>
+          <div class="price">520 ₽ <small>/ 350 г</small></div>
+        </article>
+
+        <article class="cat-card" data-cat="aged">
+          <span class="tag">Выдержанный · авторский</span>
+          <h3>Качотта с пажитником</h3>
+          <p class="desc">Тёплый ореховый аромат и грибные нотки — авторский рецепт.</p>
+          <dl>
+            <dt>Подача</dt><dd>к вину, на сырную тарелку</dd>
+            <dt>Хранение</dt><dd>до 21 дня</dd>
+            <dt>Готовлю</dt><dd>10–14 дней</dd>
+          </dl>
+          <div class="price">560 ₽ <small>/ 350 г</small></div>
+        </article>
+
+        <article class="cat-card" data-cat="young fry">
+          <span class="tag">Для жарки</span>
+          <h3>Панир</h3>
+          <p class="desc">Плотный сыр, который держит форму на сковороде и гриле.</p>
+          <dl>
+            <dt>Подача</dt><dd>жарить, гриль, карри</dd>
+            <dt>Хранение</dt><dd>4 дня в холодильнике</dd>
+            <dt>Готовлю</dt><dd>1–2 дня</dd>
+          </dl>
+          <div class="price">380 ₽ <small>/ 300 г</small></div>
+        </article>
+
+        <article class="cat-card" data-cat="young">
+          <span class="tag">Молодой</span>
+          <h3>Творожный крем-чиз</h3>
+          <p class="desc">Мягкий, гладкий, слегка сливочный — намазать или в десерт.</p>
+          <dl>
+            <dt>Подача</dt><dd>на тосты, для чизкейка, с зеленью</dd>
+            <dt>Хранение</dt><dd>5 дней в холодильнике</dd>
+            <dt>Готовлю</dt><dd>1–2 дня</dd>
+          </dl>
+          <div class="price">390 ₽ <small>/ 250 г</small></div>
+        </article>
+
+        <article class="cat-card" data-cat="lactose-free young">
+          <span class="tag">Без лактозы</span>
+          <h3>Молодой безлактозный</h3>
+          <p class="desc">Для тех, кто не переносит лактозу — тот же чистый вкус.</p>
+          <dl>
+            <dt>Подача</dt><dd>к завтраку, в салат</dd>
+            <dt>Хранение</dt><dd>5 дней в холодильнике</dd>
+            <dt>Готовлю</dt><dd>2–3 дня</dd>
+          </dl>
+          <div class="price">480 ₽ <small>/ 300 г</small></div>
+        </article>
+
+        <article class="cat-card" data-cat="young aged lactose-free fry">
+          <span class="tag">Под заказ</span>
+          <h3>И другие позиции</h3>
+          <p class="desc">Ассортимент меняется по сезону — спросите, что приготовлено сегодня, или закажите желаемый сыр заранее.</p>
+          <dl>
+            <dt>Как заказать</dt><dd>напишите в форме ниже или в Telegram</dd>
+          </dl>
+          <div class="price">по запросу</div>
+        </article>
+      </div>
+
+      <p class="disclaimer">Цены, вес и сроки указаны предварительно — идёт наполнение каталога. Актуальные — при оформлении заказа.</p>
+    </div>
+  </section>
+
+  <!-- GIFT — bold section -->
+  <section id="gift" class="gift">
+    <div class="container">
+      <span class="eyebrow">Съедобный подарок ручной работы</span>
+      <h2>Сыр в подарок — вместо привычного набора конфет</h2>
+      <p class="section-lead">Подарок, который не пылится на полке и не отправляется в шкаф. Его собирают под повод и вкус получателя, сыр варится специально под дату, а упаковка выглядит так, что её фотографируют до того, как открыть.</p>
+
+      <div class="gift-grid">
+        <!-- ЗАГЛУШКА: форматы и цены подарков — предварительные -->
+        <article class="gift-card">
+          <h3>Сырный торт</h3>
+          <p>«Торт» из сыров разной выдержки, собранный ярусами и украшенный орехами, мёдом, ягодами и розмарином. Эффектный центр праздничного стола.</p>
+          <p class="meta">900 г – 1,5 кг · под заказ за 3–5 дней · день рождения, юбилей, корпоратив</p>
+          <div class="from">от 2 500 ₽</div>
+        </article>
+        <article class="gift-card">
+          <h3>Сырные конфеты и трюфели</h3>
+          <p>Шарики из мягкого сыра в «панировке»: грецкий орех, паприка, зелень, вяленая клюква, какао. В коробке 9, 16 или 25 штук.</p>
+          <p class="meta">коробка 9 / 16 / 25 шт · за 2–3 дня · комплимент к встрече, коллеге, к чаю</p>
+          <div class="from">от 900 ₽</div>
+        </article>
+        <article class="gift-card">
+          <h3>Подарочный сырный набор</h3>
+          <p>4–6 сыров ассорти плюс дополнения — мёд, орехи, вяленые томаты, крекеры — в деревянном ящике или крафт-коробке с открыткой.</p>
+          <p class="meta">деревянный ящик или крафт-бокс · за 3–4 дня · новоселье, благодарность, универсальный подарок</p>
+          <div class="from">от 1 900 ₽</div>
+        </article>
+      </div>
+
+      <div class="gift-value">
+        <div>
+          <h3>Что входит в подарок</h3>
+          <p style="color: rgba(241,237,225,.8); margin:0;">Ценность не только в сыре — в том, как всё собрано и подано:</p>
+          <ul>
+            <li>Персональная сборка под повод и предпочтения получателя</li>
+            <li>Сыр варится специально под вашу дату — не лежалый склад</li>
+            <li>Ручная упаковка: крафт, лента, сургучная печать «Сырный погребок»</li>
+            <li>Открытка с рукописным пожеланием от вас</li>
+            <li>Карточка состава и рекомендаций по подаче и хранению</li>
+            <li>Доставка ко времени — к столу, в офис, курьером по Санкт-Петербургу</li>
+            <li>Формат «без цены»: ценник в подарок не вкладывается</li>
+          </ul>
+          <a class="btn btn-gold" href="#order">Заказать подарок</a>
+        </div>
+        <div>
+          <h3>Почему это ценный подарок</h3>
+          <p style="color: rgba(241,237,225,.88);">Сырный подарок производит впечатление: он небанальный, съедобный и рассказывает о вкусе того, кто дарит. За ним — не конвейер, а мастер, который варит небольшими партиями в Санкт-Петербурге. Такой подарок легко разделить за общим столом, и он всегда уместен — от семейного праздника до делового повода.</p>
+          <p class="gift-note">Корпоративные подарки: от 5 наборов — индивидуальные условия, брендированная открытка и единое оформление. Обсудим по заявке.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESS -->
+  <section id="process" class="band">
+    <div class="container">
+      <span class="eyebrow">Как я варю</span>
+      <h2>Каждая партия начинается с молока</h2>
+      <p class="section-lead">Охлаждённое фермерское молоко приезжает в небольших вёдрах. Я проверяю каждую партию, обязательно пастеризую и только потом начинаю варить — спокойно, чисто и внимательно.</p>
+
+      <div class="steps">
+        <div class="step"><b>01 · Свежесть</b><p>Молоко приезжает с фермы охлаждённым, чтобы сохранить качество и натуральный вкус.</p></div>
+        <div class="step"><b>02 · Подготовка</b><p>Проверяю молоко и пастеризую его перед работой — это основа безопасного процесса.</p></div>
+        <div class="step"><b>03 · Сыроварение</b><p>Закваска, фермент, сырное зерно, формовка и созревание — так рождается настоящий сыр.</p></div>
+      </div>
+
+      <div class="gallery" aria-label="Фотографии сыроварения">
+        <figure><img src="images/IMG_20260826_232610.jpg" alt="Домашние сыры Марины" loading="lazy" /></figure>
+        <figure><img src="images/IMG_20260826_232642.jpg" alt="Готовые сыры ручной работы" loading="lazy" /></figure>
+        <figure><img src="images/IMG_20260826_232654.jpg" alt="Сырное зерно в процессе приготовления" loading="lazy" /></figure>
+        <figure><img src="images/IMG_20260826_232702.jpg" alt="Формы для домашнего сыра" loading="lazy" /></figure>
+        <figure><img src="images/IMG_20260826_232710.jpg" alt="Сыры на созревании" loading="lazy" /></figure>
+      </div>
+
+      <div class="farm-card">
+        <h3>Молоко — с фермы Анны из Гатчины</h3>
+        <p>Я сотрудничаю с этой семейной фермой и делюсь их каналом. У Анны своё мясо-молочное хозяйство и большой ассортимент — они из немногих, кто обслуживает весь Петербург. Уникальная семья: Анна и её многонациональная команда — трудолюбивые и честные.</p>
+        <p>Молоко жирностью 4,4–4,5 %, охлаждённое. Качественное питание — это здоровье наших близких. Заходите, пробуйте. Будьте здоровы.</p>
+        <a class="btn btn-ghost" href="https://max.ru/c/-75045158641112/AZ_A9PXkaZk" target="_blank" rel="noopener noreferrer">Канал фермы в MAX</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- BENEFITS -->
+  <section id="benefits">
+    <div class="container">
+      <span class="eyebrow">Почему выбирают</span>
+      <h2>Вкусно и понятно по составу</h2>
+      <div class="benefits">
+        <article class="benefit"><div class="ic">🌿</div><h3>Честный состав</h3><p>Молоко, закваска, фермент, соль. Без консервантов, заменителей молочного жира и красителей.</p></article>
+        <article class="benefit"><div class="ic">🥛</div><h3>Малые партии</h3><p>Готовлю вручную под заказ, поэтому сыр свежий, а вкус и структура — живые.</p></article>
+        <article class="benefit"><div class="ic">💛</div><h3>Для семьи и детей</h3><p>Мягкие несолёные сыры, которые едят дети, и безлактозные варианты для чувствительных.</p></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- REVIEWS -->
+  <section id="reviews" class="band">
+    <div class="container">
+      <span class="eyebrow">Отзывы</span>
+      <h2>Что говорят покупатели</h2>
+      <div class="reviews">
+        <!-- ЗАГЛУШКА: заменить на реальные отзывы (можно скриншотами) -->
+        <article class="review"><p>«Сыры Марины — это вкус дома: чистый, свежий, живой. Магазинные мы почти перестали покупать.»</p><footer>— Алина, Санкт-Петербург</footer></article>
+        <article class="review"><p>«Рекомендую клиентам с непереносимостью лактозы. Состав прозрачный, вкус — как должен быть у настоящего сыра.»</p><footer>— Ольга, нутрициолог</footer></article>
+        <article class="review"><p>«Заказывал сырный торт на юбилей тёщи. Гости фотографировали до того, как разрезали. Повторю обязательно.»</p><footer>— Дмитрий, Санкт-Петербург</footer></article>
+      </div>
+    </div>
+  </section>
+
+  <!-- DELIVERY -->
+  <section id="delivery">
+    <div class="container">
+      <span class="eyebrow">Доставка и оплата</span>
+      <h2>Как получить заказ</h2>
+      <div class="info-grid">
+        <div class="info-card">
+          <h3>Доставка</h3>
+          <ul>
+            <li>Самовывоз — Калининский район</li>
+            <li>Курьером по Санкт-Петербургу — Яндекс Доставка (Экспресс), заказывает и оплачивает получатель</li>
+            <li>Только Санкт-Петербург</li>
+            <li>Подарки — доставка ко конкретному времени, согласуем при заказе</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3>Оплата и условия</h3>
+          <ul>
+            <!-- ЗАГЛУШКА: способ оплаты (перевод/СБП/карта) и нужна ли предоплата — уточнить у Марины -->
+            <li>Способ оплаты уточняется — сообщу при подтверждении заявки</li>
+            <li>Минимальный заказ — 1 000 ₽</li>
+            <li>Молодые сыры готовы за 1–2 дня, выдержанные и подарки — 3–14 дней</li>
+            <li>Условия возврата — см. вопрос «Что если с заказом что-то не так» ниже</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section id="faq" class="band">
+    <div class="container">
+      <span class="eyebrow">Вопросы</span>
+      <h2>Коротко о главном</h2>
+      <div class="faq">
+        <details><summary>Сыр действительно домашний?</summary><p>Да. Варю сама небольшими партиями в Санкт-Петербурге. Молоко — фермерское охлаждённое, обязательно пастеризую перед варкой.</p></details>
+        <details><summary>Как хранить и сколько?</summary><p>Срок указан в карточке каждого сыра. Молодые сыры — 4–5 дней, в рассоле до 14 дней, выдержанные — до 21 дня в холодильнике.</p></details>
+        <details><summary>Можно попробовать перед большим заказом?</summary><p>Да, соберу мини-набор на пробу из текущих позиций.</p></details>
+        <details><summary>Делаете ли безлактозные сыры?</summary><p>Да, это отдельная позиция в каталоге, готовлю за 2–3 дня.</p></details>
+        <details><summary>Подходит ли сыр детям?</summary><p>Молоко всегда пастеризуется. Среди позиций есть мягкие несолёные сыры — адыгейский, творожный, панир, — которые обычно подходят детям. Возраст введения конкретного продукта уточняйте у педиатра.</p></details>
+        <details><summary>Как заказать подарок с доставкой ко времени?</summary><p>Оставьте заявку за 3–5 дней до даты. Согласуем формат, дату, адрес и текст открытки.</p></details>
+        <details><summary>Что если с заказом что-то не так?</summary><p>Сыр — товар особенный, и если он пришёл свежим, в срок годности и в целой упаковке, вернуть его после покупки, к сожалению, нельзя — так устроены правила для продуктов питания. Поэтому если что-то смущает до заказа — лучше спросить заранее в Telegram или через форму, помогу выбрать. А если в продукте оказался явный недостаток — например, скрытая плесень или упаковка была повреждена не по вашей вине, — напишите в течение 24 часов с момента получения на <a href="mailto:oleynikova_27_06@mail.ru">oleynikova_27_06@mail.ru</a> с фото товара, этикетки и чеком. Посмотрю внимательно и решим вопрос.</p></details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ORDER -->
+  <section id="order">
+    <div class="container">
+      <span class="eyebrow">Заказать</span>
+      <h2>Оставьте заявку</h2>
+      <p class="section-lead">Напишите, что интересует — отвечу и помогу выбрать. Заявка ни к чему не обязывает.</p>
+
+      <div class="order-wrap">
+        <form class="order" id="order-form" novalidate>
+          <!-- ЗАГЛУШКА: форма пока не подключена к CRM. Подключение к Google Таблице — Этап 2 плана. -->
+          <label for="f-name">Имя</label>
+          <input type="text" id="f-name" name="name" autocomplete="name" required />
+
+          <label for="f-contact">Телефон или мессенджер</label>
+          <input type="text" id="f-contact" name="contact" placeholder="+7 ..., Telegram, WhatsApp" required />
+
+          <label for="f-type">Что интересует</label>
+          <select id="f-type" name="type">
+            <option>Сыр к столу</option>
+            <option>Сыр в подарок</option>
+            <option>Набор на пробу</option>
+            <option>Корпоративный заказ</option>
+            <option>Другое</option>
+          </select>
+
+          <label for="f-date">Желаемая дата</label>
+          <input type="date" id="f-date" name="date" />
+
+          <label for="f-msg">Комментарий</label>
+          <textarea id="f-msg" name="message" placeholder="Какие сыры, сколько, куда доставить"></textarea>
+
+          <label for="f-agree" style="display:flex;gap:10px;align-items:flex-start;font-weight:400;margin-top:18px;">
+            <input type="checkbox" id="f-agree" name="agree" required style="width:auto;margin-top:5px;" />
+            <span>Соглашаюсь на обработку персональных данных согласно <a href="#privacy">политике конфиденциальности</a></span>
+          </label>
+
+          <button type="submit" class="btn btn-primary">Отправить заявку</button>
+        </form>
+
+        <div class="form-done" id="form-done" hidden>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;margin:0 0 8px;">Спасибо, заявка отправлена</h3>
+          <p style="margin:0;color:#4f5647;">Я свяжусь с вами в течение дня. Если удобнее — напишите сразу в Telegram.</p>
+        </div>
+
+        <div>
+          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;margin:0 0 10px;">Прямая связь</h3>
+          <div class="contacts-list">
+            <!-- ЗАГЛУШКА: проверить актуальность контактов -->
+            <span><span class="lbl">Телефон</span> +7 917 869-46-65</span>
+            <a href="https://t.me/Marinavselenay"><span class="lbl">Telegram</span> @Marinavselenay</a>
+            <a href="https://wa.me/79178694665"><span class="lbl">WhatsApp</span> +7 917 869-46-65</a>
+            <a href="https://max.ru/join/UlvDDVi9nCrNgrJRrErpsZFalojKVDBn5F7Ovxng8AE"><span class="lbl">Канал MAX</span> Сырный погребок Марины</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site">
+  <div class="container">
+    <div>© 2026 · Сырный погребок Марины · Санкт-Петербург</div>
+    <div>Самозанятая · ИНН указывается в чеке · <a href="#privacy">Политика конфиденциальности</a></div>
+  </div>
+</footer>
+
+<script>
+  // Мобильное меню
+  var menuButton = document.querySelector(".menu-btn");
+  var siteNav = document.querySelector("#site-nav");
+  menuButton.addEventListener("click", function () {
+    var isOpen = siteNav.classList.toggle("is-open");
+    menuButton.setAttribute("aria-expanded", String(isOpen));
+    menuButton.setAttribute("aria-label", isOpen ? "Закрыть меню" : "Открыть меню");
+  });
+  siteNav.querySelectorAll("a").forEach(function (link) {
+    link.addEventListener("click", function () {
+      siteNav.classList.remove("is-open");
+      menuButton.setAttribute("aria-expanded", "false");
+    });
+  });
+
+  // Фильтр каталога
+  var chips = document.querySelectorAll(".filters .chip");
+  var cards = document.querySelectorAll(".cat-grid .cat-card");
+
+  // Кнопка «Заказать» в каждой карточке — прокрутка к форме и подстановка позиции
+  cards.forEach(function (card) {
+    var title = card.querySelector("h3");
+    var link = document.createElement("a");
+    link.href = "#order";
+    link.className = "card-order";
+    link.textContent = "Заказать →";
+    link.addEventListener("click", function () {
+      var msg = document.querySelector("#f-msg");
+      if (msg && title) msg.value = "Интересует: " + title.textContent.trim();
+    });
+    card.appendChild(link);
+  });
+  chips.forEach(function (chip) {
+    chip.addEventListener("click", function () {
+      chips.forEach(function (c) { c.setAttribute("aria-pressed", "false"); });
+      chip.setAttribute("aria-pressed", "true");
+      var f = chip.dataset.filter;
+      cards.forEach(function (card) {
+        var show = f === "all" || (card.dataset.cat || "").split(" ").indexOf(f) !== -1;
+        card.style.display = show ? "" : "none";
+      });
+    });
+  });
+
+  // Форма-заглушка: показать подтверждение (подключение к CRM — отдельный этап)
+  var form = document.querySelector("#order-form");
+  var done = document.querySelector("#form-done");
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    // TODO: POST данных в Google Apps Script (веб-приложение) -> строка в Google Таблице
+    form.hidden = true;
+    done.hidden = false;
+    done.scrollIntoView({ behavior: "smooth", block: "center" });
+  });
+</script>
+</body>
+</html>
