@@ -1,0 +1,30 @@
+name: Deploy to Beget
+
+# Автодеплой сайта на хостинг Beget при каждом пуше в master.
+# Пароль и логин от FTP нигде в коде не хранятся — берутся из GitHub Secrets
+# (Settings → Secrets and variables → Actions в репозитории на github.com).
+
+on:
+  push:
+    branches: [master]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Deploy by FTPS to Beget
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          protocol: ftps
+          local-dir: ./
+          server-dir: ${{ secrets.FTP_SERVER_DIR }}
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/.github/**
