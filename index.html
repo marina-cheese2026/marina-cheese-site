@@ -14,21 +14,23 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,600&family=Golos+Text:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 
 <style>
   :root {
-    --cream: #F5F2E8;
-    --cream-2: #EEE9DA;
-    --paper: #FFFFFF;
-    --ink: #262019;
-    --muted: #6C6455;
-    --line: #E3DCCB;
-    --green: #2F5241;
-    --green-d: #223E30;
-    --green-tint: #E7EEE7;
-    --gold: #B0842F;
-    --gold-lt: #E7C98A;
+    /* палитра в стиле версии на Lovable: тёплый крем + шоколад + терракота */
+    --cream: #FBF3DE;
+    --cream-2: #F4E8C9;
+    --paper: #FFFDF7;
+    --ink: #3B2718;
+    --muted: #7A6450;
+    --line: #EADBB8;
+    --green: #3B2718;      /* основной (кнопки, ссылки) — шоколад */
+    --green-d: #2A1B10;    /* тёмные блоки */
+    --green-tint: #F3E4C8;
+    --gold: #A8683A;       /* акцент — терракота */
+    --gold-lt: #F0C98E;
+    --terracotta: #B07650;
     --shadow: 0 1px 2px rgba(38,32,25,.05), 0 10px 30px rgba(38,32,25,.06);
     --radius: 18px;
     --maxw: 1140px;
@@ -49,7 +51,7 @@
   }
   img { max-width: 100%; display: block; }
   a { color: var(--green); text-underline-offset: 3px; }
-  h1, h2, h3, h4 { font-family: "Cormorant Garamond", Georgia, "Times New Roman", serif; letter-spacing: -.01em; line-height: 1.05; margin: 0; text-wrap: balance; }
+  h1, h2, h3, h4 { font-family: "Golos Text", "Segoe UI", Roboto, system-ui, sans-serif; letter-spacing: -.02em; line-height: 1.05; margin: 0; text-wrap: balance; }
 
   .container { width: min(var(--maxw), calc(100% - 40px)); margin-inline: auto; }
   section { padding: clamp(56px, 8vw, 104px) 0; }
@@ -64,7 +66,7 @@
     color: var(--gold);
     margin-bottom: 18px;
   }
-  h2 { font-size: clamp(2.1rem, 4vw, 3.1rem); font-weight: 600; }
+  h2 { font-size: clamp(2rem, 4vw, 3rem); font-weight: 800; }
   .section-lead { max-width: 62ch; color: var(--muted); margin-top: 14px; font-size: 1.05rem; }
 
   .btn {
@@ -75,7 +77,7 @@
     transition: transform .18s ease, background-color .18s ease, box-shadow .18s ease;
   }
   .btn:hover { transform: translateY(-1px); }
-  .btn-primary { background: var(--green); color: #fff; box-shadow: 0 12px 26px rgba(47,82,65,.22); }
+  .btn-primary { background: var(--green); color: #fff; box-shadow: 0 12px 26px rgba(59,39,24,.25); }
   .btn-primary:hover { background: var(--green-d); }
   .btn-ghost { background: transparent; border-color: var(--line); color: var(--ink); }
   .btn-ghost:hover { border-color: var(--green); color: var(--green); }
@@ -86,31 +88,38 @@
   .skip-link { position: fixed; left: 16px; top: -60px; z-index: 30; background: var(--green); color: #fff; padding: 10px 16px; border-radius: 10px; font-weight: 600; }
   .skip-link:focus { top: 16px; }
 
-  .topbar { position: sticky; top: 0; z-index: 20; background: rgba(245,242,232,.86); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
+  .topbar { position: sticky; top: 0; z-index: 20; background: rgba(251,243,222,.88); backdrop-filter: blur(10px); border-bottom: 1px solid var(--line); }
   .topbar-inner { display: flex; align-items: center; justify-content: space-between; min-height: 72px; }
-  .brand { font-family: "Cormorant Garamond", serif; font-weight: 700; font-size: 1.5rem; letter-spacing: -.01em; color: var(--ink); }
+  .brand { font-family: "Golos Text", sans-serif; font-weight: 700; font-size: 1.2rem; letter-spacing: -.01em; color: var(--ink); }
   .brand span { color: var(--gold); }
   .nav { display: flex; align-items: center; gap: 26px; }
   .nav a { color: var(--muted); font-size: .96rem; font-weight: 500; }
   .nav a:hover { color: var(--green); }
-  .nav .btn { min-height: 42px; padding: 0 18px; font-size: .92rem; }
+  .nav .btn { min-height: 42px; padding: 0 18px; font-size: .92rem; color: #fff; }
+  .nav .btn:hover { color: #fff; }
   .menu-btn { display: none; width: 46px; height: 46px; border: 1px solid var(--line); border-radius: 12px; background: var(--paper); cursor: pointer; }
   .menu-btn span, .menu-btn::before, .menu-btn::after { content: ""; display: block; width: 20px; height: 2px; background: var(--ink); border-radius: 2px; margin: 4px auto; }
 
   /* ---------- hero ---------- */
-  .hero { position: relative; overflow: hidden; }
+  .hero { position: relative; overflow: hidden; background: #140d08; color: #fff; min-height: min(88vh, 780px); display: flex; align-items: center; }
   .hero::before {
     content: ""; position: absolute; inset: 0; z-index: 0;
     background:
-      linear-gradient(96deg, var(--cream) 12%, rgba(245,242,232,.82) 46%, rgba(245,242,232,.30) 100%),
-      url('images/IMG_20260826_232634.jpg') center/cover no-repeat;
+      linear-gradient(180deg, rgba(10,6,3,.55) 0%, rgba(10,6,3,.35) 45%, rgba(10,6,3,.75) 100%),
+      url('images/cheese/hero.jpg') center/cover no-repeat;
   }
   .hero .container { position: relative; z-index: 1; }
-  .hero-inner { max-width: 640px; padding: clamp(56px, 9vw, 116px) 0; }
-  .hero h1 { font-size: clamp(2.9rem, 7vw, 5.2rem); font-weight: 700; }
-  .hero p.lead { font-size: clamp(1.1rem, 2.2vw, 1.5rem); color: #3f382d; margin: 20px 0 0; line-height: 1.35; }
-  .hero .place { margin-top: 14px; font-weight: 600; color: var(--green); font-size: .98rem; }
+  .hero-inner { max-width: 760px; margin-inline: auto; text-align: center; padding: clamp(72px, 10vw, 128px) 0; }
+  .hero .eyebrow { color: rgba(255,255,255,.75); }
+  .hero h1 { font-size: clamp(2.8rem, 7.5vw, 5.6rem); font-weight: 800; line-height: .98; color: #fff; }
+  .hero p.lead { font-size: clamp(1.05rem, 2vw, 1.3rem); color: rgba(255,255,255,.82); margin: 22px auto 0; line-height: 1.45; max-width: 44ch; }
+  .hero .place { margin-top: 14px; font-weight: 600; color: var(--gold-lt); font-size: .98rem; }
   .cta-row { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 32px; }
+  .hero .cta-row { justify-content: center; }
+  .hero .btn-primary { background: #fff; color: var(--ink); box-shadow: 0 12px 30px rgba(0,0,0,.3); }
+  .hero .btn-primary:hover { background: var(--cream); }
+  .hero .btn-ghost { border-color: rgba(255,255,255,.55); color: #fff; }
+  .hero .btn-ghost:hover { border-color: #fff; color: #fff; background: rgba(255,255,255,.08); }
 
   /* ---------- catalog ---------- */
   .filters { display: flex; flex-wrap: wrap; gap: 10px; margin: 26px 0 30px; }
@@ -124,16 +133,24 @@
 
   .cat-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
   .cat-card {
+    position: relative; overflow: hidden;
     background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius);
     padding: 24px 22px; box-shadow: var(--shadow); display: flex; flex-direction: column; gap: 10px;
+    transition: transform .25s ease, box-shadow .25s ease;
   }
+  .cat-card:hover { transform: translateY(-4px); box-shadow: 0 2px 4px rgba(59,39,24,.06), 0 18px 40px rgba(59,39,24,.12); }
+  .cat-photo { margin: -24px -22px 8px; aspect-ratio: 4 / 3; overflow: hidden; background: var(--cream-2); position: relative; }
+  .cat-photo img { width: 100%; height: 100%; object-fit: cover; transition: transform .5s ease; }
+  .cat-card:hover .cat-photo img { transform: scale(1.05); }
+  .cat-photo .illu { position: absolute; right: 10px; bottom: 10px; background: rgba(20,13,8,.6); color: #fff; font-size: .7rem; padding: 3px 9px; border-radius: 999px; letter-spacing: .02em; }
+  .cat-photo.empty { display: grid; place-items: center; background: linear-gradient(135deg, var(--cream-2), var(--gold-lt)); color: var(--ink); font-weight: 600; font-size: .9rem; }
   .cat-card .tag { font-size: .72rem; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--gold); }
-  .cat-card h3 { font-size: 1.7rem; font-weight: 600; }
+  .cat-card h3 { font-size: 1.33rem; font-weight: 700; }
   .cat-card .desc { color: var(--muted); font-size: .97rem; margin: 0; }
   .cat-card dl { display: grid; grid-template-columns: auto 1fr; gap: 4px 12px; margin: 6px 0 0; font-size: .9rem; }
   .cat-card dt { color: var(--muted); }
   .cat-card dd { margin: 0; }
-  .cat-card .price { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); font-size: 1.25rem; font-weight: 700; font-family: "Cormorant Garamond", serif; font-variant-numeric: tabular-nums; }
+  .cat-card .price { margin-top: auto; padding-top: 14px; border-top: 1px solid var(--line); font-size: 1.25rem; font-weight: 700; font-family: "Golos Text", sans-serif; font-variant-numeric: tabular-nums; }
   .cat-card .price small { font-family: "Golos Text", sans-serif; font-weight: 500; font-size: .8rem; color: var(--muted); }
   .cat-card .card-order { margin-top: 12px; font-weight: 600; font-size: .92rem; align-self: flex-start; }
   .disclaimer { margin-top: 22px; font-size: .88rem; color: var(--muted); font-style: italic; }
@@ -148,13 +165,13 @@
     background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.14);
     border-radius: var(--radius); padding: 26px 22px; display: flex; flex-direction: column; gap: 10px;
   }
-  .gift-card h3 { font-size: 1.55rem; font-weight: 600; color: #fff; }
+  .gift-card h3 { font-size: 1.21rem; font-weight: 700; color: #fff; }
   .gift-card p { margin: 0; color: rgba(241,237,225,.78); font-size: .96rem; }
   .gift-card .meta { font-size: .86rem; color: rgba(241,237,225,.62); }
-  .gift-card .from { margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.14); font-family: "Cormorant Garamond", serif; font-size: 1.25rem; font-weight: 700; color: var(--gold-lt); }
+  .gift-card .from { margin-top: auto; padding-top: 14px; border-top: 1px solid rgba(255,255,255,.14); font-size: 1.15rem; font-weight: 700; color: var(--gold-lt); }
 
   .gift-value { margin-top: 44px; display: grid; grid-template-columns: 1.1fr 1fr; gap: 40px; align-items: start; }
-  .gift-value h3 { font-size: 1.9rem; font-weight: 600; color: #fff; margin-bottom: 8px; }
+  .gift-value h3 { font-size: 1.48rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
   .gift-value ul { list-style: none; padding: 0; margin: 16px 0 0; display: grid; gap: 12px; }
   .gift-value li { position: relative; padding-left: 30px; color: rgba(241,237,225,.9); font-size: .98rem; }
   .gift-value li::before { content: "✦"; position: absolute; left: 0; top: 0; color: var(--gold-lt); }
@@ -164,7 +181,7 @@
   /* ---------- process ---------- */
   .steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 34px; }
   .step { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 24px; box-shadow: var(--shadow); }
-  .step b { color: var(--gold); font-family: "Cormorant Garamond", serif; font-size: 1.2rem; }
+  .step b { color: var(--gold); font-size: 1.05rem; }
   .step p { margin: 8px 0 0; color: var(--muted); font-size: .96rem; }
   .gallery { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin-top: 24px; }
   .gallery figure { margin: 0; border-radius: 14px; overflow: hidden; border: 1px solid var(--line); background: var(--cream-2); aspect-ratio: 1 / 1; }
@@ -174,7 +191,7 @@
 
   /* ---------- farm ---------- */
   .farm-card { margin-top: 32px; background: var(--paper); border: 1px solid var(--line); border-left: 4px solid var(--gold); border-radius: var(--radius); padding: 28px 26px; box-shadow: var(--shadow); }
-  .farm-card h3 { font-size: 1.6rem; font-weight: 600; margin-bottom: 10px; }
+  .farm-card h3 { font-size: 1.25rem; font-weight: 700; margin-bottom: 10px; }
   .farm-card p { color: var(--muted); margin: 0 0 12px; }
   .farm-card .btn { margin-top: 4px; }
 
@@ -188,10 +205,10 @@
 
   /* ---------- benefits ---------- */
   .benefits { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 34px; }
-  .benefit { background: var(--green-tint); border: 1px solid #d7e2d7; border-radius: var(--radius); padding: 28px 24px; }
+  .benefit { background: var(--green-tint); border: 1px solid var(--line); border-radius: var(--radius); padding: 28px 24px; }
   .benefit .ic { font-size: 1.9rem; }
-  .benefit h3 { font-size: 1.5rem; font-weight: 600; margin: 12px 0 6px; }
-  .benefit p { margin: 0; color: #4f5647; font-size: .96rem; }
+  .benefit h3 { font-size: 1.17rem; font-weight: 700; margin: 12px 0 6px; }
+  .benefit p { margin: 0; color: var(--muted); font-size: .96rem; }
 
   /* ---------- reviews ---------- */
   .reviews { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 34px; }
@@ -202,7 +219,7 @@
   /* ---------- delivery ---------- */
   .info-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 22px; margin-top: 30px; }
   .info-card { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 26px; box-shadow: var(--shadow); }
-  .info-card h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 10px; }
+  .info-card h3 { font-size: 1.17rem; font-weight: 700; margin-bottom: 10px; }
   .info-card ul { margin: 0; padding-left: 20px; color: var(--muted); }
   .info-card li { margin: 6px 0; }
 
@@ -215,6 +232,15 @@
   .faq details[open] summary::after { content: "–"; }
   .faq p { margin: 0 0 16px; color: var(--muted); }
 
+  /* ---------- cta band (из версии Lovable) ---------- */
+  .cta-band { background: var(--terracotta); color: #fff; border-radius: 26px; padding: clamp(36px, 6vw, 64px) 24px; text-align: center; box-shadow: 0 24px 50px rgba(120,70,40,.25); }
+  .cta-band h2 { color: #fff; }
+  .cta-band p { color: rgba(255,255,255,.85); margin: 12px 0 0; }
+  .cta-band .cta-row { justify-content: center; }
+  .cta-band .btn-primary { background: #fff; color: var(--ink); box-shadow: none; }
+  .cta-band .btn-ghost { border-color: rgba(255,255,255,.6); color: #fff; }
+  .cta-band .btn-ghost:hover { color: #fff; border-color: #fff; background: rgba(255,255,255,.1); }
+
   /* ---------- order form ---------- */
   .order-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 44px; margin-top: 30px; align-items: start; }
   form.order { background: var(--paper); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px; box-shadow: var(--shadow); }
@@ -226,7 +252,7 @@
   form.order input:focus, form.order select:focus, form.order textarea:focus { outline: 2px solid var(--green); outline-offset: 1px; border-color: transparent; }
   form.order textarea { min-height: 96px; resize: vertical; }
   form.order .btn { margin-top: 22px; width: 100%; }
-  .form-done { background: var(--green-tint); border: 1px solid #d7e2d7; border-radius: var(--radius); padding: 30px; }
+  .form-done { background: var(--green-tint); border: 1px solid var(--line); border-radius: var(--radius); padding: 30px; }
   .contacts-list { display: grid; gap: 14px; margin-top: 8px; }
   .contacts-list a, .contacts-list span { display: flex; gap: 10px; align-items: baseline; color: var(--ink); font-weight: 500; }
   .contacts-list .lbl { color: var(--muted); font-size: .85rem; min-width: 86px; font-weight: 500; }
@@ -287,7 +313,7 @@
       <div class="hero-inner">
         <span class="eyebrow">Домашняя сыроварня · Санкт-Петербург</span>
         <h1>Сыр, сваренный дома с заботой</h1>
-        <p class="lead">Натуральные сыры из фермерского молока — к семейному столу, для здоровья и в подарок. Небольшие партии, ручная работа, честный состав.</p>
+        <p class="lead">Натуральные сыры из фермерского молока — к семейному столу и в подарок. Небольшие партии, ручная работа, честный состав.</p>
         <p class="place">Санкт-Петербург · Калининский район · доставка по городу</p>
         <div class="cta-row">
           <a class="btn btn-primary" href="#catalog">Смотреть ассортимент</a>
@@ -331,6 +357,7 @@
       <div class="cat-grid">
         <!-- ЗАГЛУШКА: цены, вес и сроки — предварительные -->
         <article class="cat-card" data-cat="young fry">
+          <div class="cat-photo"><img src="images/cheese/adygeyskiy.jpg" alt="Адыгейский сыр Марины на весах" loading="lazy" /></div>
           <span class="tag">Молодой</span>
           <h3>Адыгейский</h3>
           <p class="desc">Нежный свежий сыр с мягким молочным вкусом.</p>
@@ -343,6 +370,7 @@
         </article>
 
         <article class="cat-card" data-cat="young">
+          <div class="cat-photo"><img src="images/cheese/brynza.jpg" alt="Брынза Марины" loading="lazy" /></div>
           <span class="tag">Молодой</span>
           <h3>Брынза</h3>
           <p class="desc">Выразительная солёность и плотная, аппетитная текстура.</p>
@@ -355,6 +383,7 @@
         </article>
 
         <article class="cat-card" data-cat="young">
+          <div class="cat-photo"><img src="images/cheese/feta-illu.jpg" alt="Фета" loading="lazy" /><span class="illu">иллюстрация</span></div>
           <span class="tag">Молодой</span>
           <h3>Фета</h3>
           <p class="desc">Кремовая, насыщенная, идеальна для греческого салата.</p>
@@ -367,6 +396,7 @@
         </article>
 
         <article class="cat-card" data-cat="aged">
+          <div class="cat-photo"><img src="images/cheese/kachotta.jpg" alt="Качотта Марины" loading="lazy" /></div>
           <span class="tag">Выдержанный</span>
           <h3>Качотта классическая</h3>
           <p class="desc">Мягкий полутвёрдый сыр с деликатным вкусом и красивой корочкой.</p>
@@ -379,6 +409,7 @@
         </article>
 
         <article class="cat-card" data-cat="aged">
+          <div class="cat-photo"><img src="images/cheese/pazhitnik-illu.jpg" alt="Качотта с пажитником" loading="lazy" /><span class="illu">иллюстрация</span></div>
           <span class="tag">Выдержанный · авторский</span>
           <h3>Качотта с пажитником</h3>
           <p class="desc">Тёплый ореховый аромат и грибные нотки — авторский рецепт.</p>
@@ -391,6 +422,7 @@
         </article>
 
         <article class="cat-card" data-cat="young fry">
+          <div class="cat-photo empty">фото с ближайшей варки</div>
           <span class="tag">Для жарки</span>
           <h3>Панир</h3>
           <p class="desc">Плотный сыр, который держит форму на сковороде и гриле.</p>
@@ -403,6 +435,7 @@
         </article>
 
         <article class="cat-card" data-cat="young">
+          <div class="cat-photo"><img src="images/cheese/krem-chiz-illu.jpg" alt="Творожный крем-чиз" loading="lazy" /><span class="illu">иллюстрация</span></div>
           <span class="tag">Молодой</span>
           <h3>Творожный крем-чиз</h3>
           <p class="desc">Мягкий, гладкий, слегка сливочный — намазать или в десерт.</p>
@@ -415,6 +448,7 @@
         </article>
 
         <article class="cat-card" data-cat="lactose-free young">
+          <div class="cat-photo"><img src="images/cheese/bezlaktoznyy-illu.jpg" alt="Безлактозный сыр" loading="lazy" /><span class="illu">иллюстрация</span></div>
           <span class="tag">Без лактозы</span>
           <h3>Молодой безлактозный</h3>
           <p class="desc">Для тех, кто не переносит лактозу — тот же чистый вкус.</p>
@@ -427,6 +461,7 @@
         </article>
 
         <article class="cat-card" data-cat="young aged lactose-free fry">
+          <div class="cat-photo"><img src="images/cheese/assorti.jpg" alt="Сыры Марины после варки" loading="lazy" /></div>
           <span class="tag">Под заказ</span>
           <h3>И другие позиции</h3>
           <p class="desc">Ассортимент меняется по сезону — спросите, что приготовлено сегодня, или закажите желаемый сыр заранее.</p>
@@ -597,6 +632,20 @@
     </div>
   </section>
 
+  <!-- CTA (из версии Lovable) -->
+  <section class="cta-section" style="padding-bottom:0">
+    <div class="container">
+      <div class="cta-band">
+        <h2>Готовы заказать сыр?</h2>
+        <p>Напишите мне — отвечу в течение дня и помогу выбрать</p>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="https://wa.me/79178694665">Написать в WhatsApp</a>
+          <a class="btn btn-ghost" href="https://t.me/sirnuypogrebok">Канал в Telegram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- ORDER -->
   <section id="order">
     <div class="container">
@@ -606,7 +655,7 @@
 
       <div class="order-wrap">
         <form class="order" id="order-form" novalidate>
-          <!-- ЗАГЛУШКА: форма пока не подключена к CRM. Подключение к Google Таблице — Этап 2 плана. -->
+          <!-- Заявка уходит в WhatsApp Марины готовым текстом (см. скрипт внизу). CRM-таблица — Этап 2. -->
           <label for="f-name">Имя</label>
           <input type="text" id="f-name" name="name" autocomplete="name" required />
 
@@ -637,16 +686,16 @@
         </form>
 
         <div class="form-done" id="form-done" hidden>
-          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;margin:0 0 8px;">Спасибо, заявка отправлена</h3>
-          <p style="margin:0;color:#4f5647;">Я свяжусь с вами в течение дня. Если удобнее — напишите сразу в Telegram.</p>
+          <h3 style="font-size:1.35rem;font-weight:700;margin:0 0 8px;">Почти готово</h3>
+          <p style="margin:0;color:#4f5647;">Открылся WhatsApp с вашей заявкой — нажмите «Отправить», и я отвечу в течение дня. Не открылся? Напишите на +7 917 869-46-65 в WhatsApp или в <a href="https://t.me/sirnuypogrebok">Telegram-канал</a>.</p>
         </div>
 
         <div>
-          <h3 style="font-family:'Cormorant Garamond',serif;font-size:1.7rem;font-weight:600;margin:0 0 10px;">Прямая связь</h3>
+          <h3 style="font-size:1.35rem;font-weight:700;font-weight:600;margin:0 0 10px;">Прямая связь</h3>
           <div class="contacts-list">
             <!-- ЗАГЛУШКА: проверить актуальность контактов -->
             <span><span class="lbl">Телефон</span> +7 917 869-46-65</span>
-            <a href="https://t.me/Marinavselenay"><span class="lbl">Telegram</span> @Marinavselenay</a>
+            <a href="https://t.me/sirnuypogrebok"><span class="lbl">Telegram</span> Канал «Сырный погребок»</a>
             <a href="https://wa.me/79178694665"><span class="lbl">WhatsApp</span> +7 917 869-46-65</a>
             <a href="https://max.ru/join/UlvDDVi9nCrNgrJRrErpsZFalojKVDBn5F7Ovxng8AE"><span class="lbl">Канал MAX</span> Сырный погребок Марины</a>
           </div>
@@ -714,7 +763,15 @@
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
-    // TODO: POST данных в Google Apps Script (веб-приложение) -> строка в Google Таблице
+    // Заявка уходит Марине в WhatsApp готовым текстом (CRM-таблица — позже)
+    var v = function (id) { return (document.getElementById(id).value || "").trim(); };
+    var text = "Здравствуйте, Марина! Заявка с сайта.\n" +
+      "Имя: " + v("f-name") + "\n" +
+      "Контакт: " + v("f-contact") + "\n" +
+      "Интересует: " + v("f-type") +
+      (v("f-date") ? "\nДата: " + v("f-date") : "") +
+      (v("f-msg") ? "\nКомментарий: " + v("f-msg") : "");
+    window.open("https://wa.me/79178694665?text=" + encodeURIComponent(text), "_blank");
     form.hidden = true;
     done.hidden = false;
     done.scrollIntoView({ behavior: "smooth", block: "center" });
