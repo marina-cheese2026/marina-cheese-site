@@ -15,6 +15,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
+      # Токен бота @moskazka_bot и chat_id Марины для order.php — тоже из Secrets
+      - name: Create tg-config.php
+        env:
+          TG_BOT_TOKEN: ${{ secrets.TG_BOT_TOKEN }}
+          TG_CHAT_ID: ${{ secrets.TG_CHAT_ID }}
+        run: |
+          printf '<?php\n$TG_BOT_TOKEN = %s;\n$TG_CHAT_ID = %s;\n' \
+            "$(php -r 'echo var_export(getenv("TG_BOT_TOKEN"), true);')" \
+            "$(php -r 'echo var_export(getenv("TG_CHAT_ID"), true);')" > tg-config.php
+
       - name: Deploy by FTP to Beget
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:

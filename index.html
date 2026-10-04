@@ -601,7 +601,8 @@
 
       <div class="order-wrap">
         <form class="order" id="order-form" novalidate>
-          <!-- Заявка уходит в WhatsApp Марины готовым текстом (см. скрипт внизу). CRM-таблица — Этап 2. -->
+          <!-- Заявка уходит Марине в Telegram через order.php (бот @moskazka_bot). Если сервер не ответил — запасной путь через WhatsApp. -->
+          <input type="text" name="website" id="f-website" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;" aria-hidden="true" />
           <label for="f-name">Имя</label>
           <input type="text" id="f-name" name="name" autocomplete="name" required />
 
@@ -631,8 +632,8 @@
         </form>
 
         <div class="form-done" id="form-done" hidden>
-          <h3 style="font-size:1.35rem;font-weight:700;margin:0 0 8px;">Почти готово</h3>
-          <p style="margin:0;color:#4f5647;">Открылся WhatsApp с вашей заявкой — нажмите «Отправить», и я отвечу в течение дня. Не открылся? Напишите на +7 917 869-46-65 в WhatsApp или в <a href="https://t.me/sirnuypogrebok">Telegram-канал</a>.</p>
+          <h3 style="font-size:1.35rem;font-weight:700;margin:0 0 8px;">Заявка отправлена</h3>
+          <p style="margin:0;color:#4f5647;">Спасибо! Я получила вашу заявку и отвечу в течение дня. Если удобнее — напишите сами на +7 917 869-46-65 в WhatsApp.</p>
         </div>
 
         <div>
@@ -702,24 +703,45 @@
     });
   });
 
-  // Форма-заглушка: показать подтверждение (подключение к CRM — отдельный этап)
+  // Форма заказа: отправка заявки в Telegram Марины
   var form = document.querySelector("#order-form");
   var done = document.querySelector("#form-done");
   form.addEventListener("submit", function (e) {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
-    // Заявка уходит Марине в WhatsApp готовым текстом (CRM-таблица — позже)
     var v = function (id) { return (document.getElementById(id).value || "").trim(); };
-    var text = "Здравствуйте, Марина! Заявка с сайта.\n" +
-      "Имя: " + v("f-name") + "\n" +
-      "Контакт: " + v("f-contact") + "\n" +
-      "Интересует: " + v("f-type") +
-      (v("f-date") ? "\nДата: " + v("f-date") : "") +
-      (v("f-msg") ? "\nКомментарий: " + v("f-msg") : "");
-    window.open("https://wa.me/79178694665?text=" + encodeURIComponent(text), "_blank");
-    form.hidden = true;
-    done.hidden = false;
-    done.scrollIntoView({ behavior: "smooth", block: "center" });
+    var btn = form.querySelector('button[type="submit"]');
+    var showDone = function () {
+      form.hidden = true;
+      done.hidden = false;
+      done.scrollIntoView({ behavior: "smooth", block: "center" });
+    };
+    // Запасной путь, если сервер не принял заявку: WhatsApp с готовым текстом
+    var viaWhatsApp = function () {
+      var text = "Здравствуйте, Марина! Заявка с сайта.\n" +
+        "Имя: " + v("f-name") + "\n" +
+        "Контакт: " + v("f-contact") + "\n" +
+        "Интересует: " + v("f-type") +
+        (v("f-date") ? "\nДата: " + v("f-date") : "") +
+        (v("f-msg") ? "\nКомментарий: " + v("f-msg") : "");
+      window.open("https://wa.me/79178694665?text=" + encodeURIComponent(text), "_blank");
+      done.querySelector("h3").textContent = "Почти готово";
+      done.querySelector("p").textContent = "Открылся WhatsApp с вашей заявкой — нажмите «Отправить», и я отвечу в течение дня. Не открылся? Напишите на +7 917 869-46-65 в WhatsApp.";
+      showDone();
+    };
+    btn.disabled = true;
+    btn.textContent = "Отправляю…";
+    fetch("order.php", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        name: v("f-name"), contact: v("f-contact"), type: v("f-type"),
+        date: v("f-date"), message: v("f-msg"), website: v("f-website")
+      })
+    })
+      .then(function (r) { return r.json(); })
+      .then(function (res) { if (res && res.ok) showDone(); else viaWhatsApp(); })
+      .catch(viaWhatsApp);
   });
 </script>
 </body>
